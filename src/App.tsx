@@ -1,4 +1,3 @@
-import "./App.css";
 import PokemonCard from "./components/pokemoncard";
 
 function App() {
