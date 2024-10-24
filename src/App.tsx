@@ -1,11 +1,33 @@
+import { useState } from "react";
 import PokemonCard from "./components/PokemonCard";
 
 const pokemonList = [
   {
-    name: "gengar",
+    name: "bulbasaur",
 
     imgSrc:
-      "https://www.pngplay.com/wp-content/uploads/11/Gengar-PNG-Background.png",
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+  },
+
+  {
+    name: "charmander",
+
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+  },
+
+  {
+    name: "squirtle",
+
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+  },
+
+  {
+    name: "pikachu",
+
+    imgSrc:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
   },
 
   {
@@ -14,9 +36,31 @@ const pokemonList = [
 ];
 
 function App() {
+  const [pokemonIndex, setPokemonIndex] = useState(0);
+  const moins = () => {
+    setPokemonIndex(pokemonIndex + 1);
+  };
+
+  const plus = () => {
+    setPokemonIndex(pokemonIndex - 1);
+  };
   return (
     <div>
-      <PokemonCard name={pokemonList[0].name} imgSrc={pokemonList[0].imgSrc} />
+      <PokemonCard
+        name={pokemonList[pokemonIndex].name}
+        imgSrc={pokemonList[pokemonIndex].imgSrc}
+      />
+      {pokemonIndex > 0 ? (
+        <button type="button" onClick={plus}>
+          Précédent
+        </button>
+      ) : null}
+      {pokemonIndex < pokemonList.length - 1 ? (
+        <button type="button" onClick={moins}>
+          Suivant
+        </button>
+      ) : null}
+      <p>{pokemonIndex}</p>
     </div>
   );
 }
